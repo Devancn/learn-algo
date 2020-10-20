@@ -77,4 +77,22 @@ class LinkedList {
     }
     this.head = root;
   }
+
+  reverseList1() {
+    let currentNode = this.head.next;
+    // 上一个遍历的节点
+    let previousNode = null;
+    while (currentNode !== null) {
+      // 暂存下一个要处理的节点
+      let nextNode = currentNode.next;
+      // 把上一个遍历处理的节点赋值给当前节点的next指针
+      currentNode.next = previousNode;
+      // 把当前节点赋值给previousNode作为上一个处理节点
+      previousNode = currentNode;
+      // 把暂存的next节点赋值给currentNode
+      currentNode = nextNode;
+    }
+    // 把反转好的链表加上头节点
+    this.head.next = previousNode;
+  }
 }
