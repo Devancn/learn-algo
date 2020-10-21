@@ -95,4 +95,16 @@ class LinkedList {
     // 把反转好的链表加上头节点
     this.head.next = previousNode;
   }
+
+  // 坚持fast与slow是否相等，相等则换存在环
+  checkCircle() {
+    let fast = this.head.next;
+    let slow = this.head;
+    while (fast !== null && fast.next !== null) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if (slow === fast) return true;
+      return false;
+    }
+  }
 }
