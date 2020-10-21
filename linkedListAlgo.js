@@ -107,4 +107,24 @@ class LinkedList {
       return false;
     }
   }
+
+  // 删除倒数第k个节点
+  removeByIndexFromEnd(index) {
+    // 先判断链表是否存在环
+    if (this.checkCircle()) return false;
+    let pos = 1;
+    // 链表反转
+    this.reverseList();
+    let currentNode = this.head.next;
+    while (currentNode !== null && pos < index) {
+      currentNode = currentNode.next;
+      pos++;
+    }
+    if (currentNode === null) {
+      console.log("无法删除最后一个节点或者该节点不存在");
+      return false;
+    }
+    this.remove(currentNode.element);
+    this.reverseList();
+  }
 }
