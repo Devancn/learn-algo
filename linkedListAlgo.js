@@ -127,4 +127,15 @@ class LinkedList {
     this.remove(currentNode.element);
     this.reverseList();
   }
+  // 求中间节点
+  findMiddleNode() {
+    let fast = this.head;
+    let slow = this.head;
+    while (fast.next !== null && fast.next.next !== null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    console.log(slow);
+    return slow;
+  }
 }
