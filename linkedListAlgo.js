@@ -28,6 +28,7 @@ class LinkedList {
     return currentNode;
   }
 
+  // 插入之前先判断element对应的Node节点是否存在
   insert(newElement, element) {
     const currentNode = this.findByValue(element);
     if (currentNode) {
@@ -138,4 +139,56 @@ class LinkedList {
     console.log(slow);
     return slow;
   }
+}
+
+// 合并两个链表且按从小到大排序
+function mergeSortedLists(listA, listB) {
+  if (!listA) return listB;
+  if (!listB) return listA;
+  let a = listA;
+  let b = listB;
+  let resultList = undefined;
+  if (a.element < b.element) {
+    resultList = a;
+    a = a.next;
+  } else {
+    resultList = b;
+    b = b.next;
+  }
+  let currentNode = resultList;
+  while (a !== null && b !== null) {
+    if (a.element < b.element) {
+      currentNode.next = a;
+      a = a.next;
+    } else {
+      currentNode.next = b;
+      b = b.next;
+    }
+    currentNode = currentNode.next;
+  }
+  if (a !== null) {
+    currentNode.next = a;
+  } else {
+    currentNode.next = b;
+  }
+  return resultList;
+}
+
+debugger
+const sortedList1 = new LinkedList();
+sortedList1.insert(9, "head");
+sortedList1.insert(8, "head");
+sortedList1.insert(7, "head");
+sortedList1.insert(6, "head");
+
+const sortedList2 = new LinkedList();
+sortedList2.insert(21, "head");
+sortedList2.insert(20, "head");
+sortedList2.insert(19, "head");
+sortedList2.insert(18, "head");
+
+let sortedList = mergeSortedLists(sortedList1.head.next, sortedList2.head.next);
+while (sortedList !== null) {
+  console.log(sortedList.element);
+  sortedList = sortedList.next;
 }
