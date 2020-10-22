@@ -19,7 +19,7 @@ class StackBasedLinkedList {
     }
   }
   pop() {
-    if (this.pop === null) {
+    if (this.top === null) {
       return -1;
     }
     const value = this.top.element;
@@ -33,7 +33,6 @@ class StackBasedLinkedList {
     if (this.top !== null) {
       let temp = this.top;
       while (temp !== null) {
-        console.log(temp.element);
         temp = temp.next;
       }
     }
@@ -51,4 +50,4 @@ while (res !== -1) {
   console.log(res);
 }
 
-export default StackBasedLinkedList;
+exports.StackBasedLinkedList = StackBasedLinkedList;
