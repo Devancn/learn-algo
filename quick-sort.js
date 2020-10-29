@@ -41,7 +41,6 @@ function partition(arr, pivot, left, right) {
  * @param {number} right 结束下标
  */
 function quickSort(arr, left, right) {
-  debugger
   if (left < right) {
     let pivot = right;
     let partitionIndex = partition(arr, pivot, left, right);
