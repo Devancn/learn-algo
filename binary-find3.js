@@ -34,7 +34,7 @@ function binaryFindFirst(array = [], target) {
  * @param {array} array 
  * @param {*} target 
  */
-function binaryFindFistBig (array, target){
+function binaryFindFirstBig (array, target){
   if(array.length === 0) return -1;
   let start = 0;
   let end = array.length - 1;
@@ -54,4 +54,4 @@ function binaryFindFistBig (array, target){
 }
 
 const arr = [1,3,5,7,11,13];
-console.log(binaryFindFistBig(arr, 6))
+console.log(binaryFindFirstBig(arr, 6))
