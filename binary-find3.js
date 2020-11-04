@@ -27,6 +27,31 @@ function binaryFindFirst(array = [], target) {
     }
   }
 }
-const arr = [4,5,4,5,6]
 
-console.log(binaryFindFirst(arr,4))
+
+/**
+ * 在有序的数组array中查找第一个大于target的元素
+ * @param {array} array 
+ * @param {*} target 
+ */
+function binaryFindFistBig (array, target){
+  if(array.length === 0) return -1;
+  let start = 0;
+  let end = array.length - 1;
+  while(start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    if(array[mid] >= target) {
+      if(mid === 0 || array[mid - 1] < target) {
+        return mid;
+      } else {
+        end = mid - 1;
+      }
+    } else {
+      start = mid + 1;
+    }
+  }
+  return -1;
+}
+
+const arr = [1,3,5,7,11,13];
+console.log(binaryFindFistBig(arr, 6))
