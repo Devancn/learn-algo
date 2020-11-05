@@ -53,5 +53,30 @@ function binaryFindFirstBig (array, target){
   return -1;
 }
 
-const arr = [1,3,5,7,11,13];
-console.log(binaryFindFirstBig(arr, 6))
+
+
+
+/**
+ * 在有序的数组array中查找最后一个小于target的元素
+ */
+function binaryFindLastSmall(array = [], target) {
+  if(array.length === 0) return 0;
+  let start = 0;
+  let end = array.length - 1;
+  while(start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    if(array[mid] < target) {
+      if(arr[mid + 1] >= target) {
+        return mid;
+      } else {
+        start = mid + 1;
+      }
+    } else {
+      end = mid - 1;
+    }
+  }
+  return -1;
+}
+const arr = [1, 2, 3, 4, 4, 4, 4, 4, 6, 7, 8, 8, 9];
+var res = binaryFindLastSmall(arr, 4);
+console.log(res,'res');
