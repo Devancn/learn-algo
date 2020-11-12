@@ -41,6 +41,7 @@ class HeapSort{
   sort() {
     const arr = this.buildHeap();
     let length = arr.length - 1;
+    
     while(length > 1) {
       // 交换顶元素和最后一位。顶元素永远是最大的。
       this.swap(arr, 1, length );
@@ -61,6 +62,7 @@ class HeapSort{
 const arr = [null]
 let i = 0
 while (i <= 10) {
+    // 随机生成一个0 - 100内正数
     const num = Math.floor(Math.random() * 100)
     arr.push(num)
     i++
