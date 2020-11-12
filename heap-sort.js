@@ -35,10 +35,10 @@ class HeapSort{
       i = maxPos;
     }
 
-    swap(i, maxPos) {
-      let temp = arr[i];
-      arr[i] = arr[max];
-      arr[max] = temp;
-    }
+  }
+  swap(i, maxPos) {
+    let temp = arr[i];
+    arr[i] = arr[maxPos];
+    arr[maxPos] = temp;
   }
 }
