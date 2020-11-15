@@ -27,4 +27,44 @@ class ACTree {
     node.isEndingChar = true;
     node.length = text.length;
   }
+
+  buildFailurePointer() {
+    let root = this.root;
+    let queue = [];
+    queue.push(root);
+
+    while(queue.length > 0) {
+      let p = queue.shift();
+      for(let i = 0; i < MAX_LEN; i++) {
+        let pc = p.children[i];
+        if(!pc) {continue};
+        if(p === root) {
+          pc.fail = root;
+        } else {
+          let q = p.fail;
+          while(q) {
+            let qc = q.children[pc.data.codePointAt(0) + 1];
+            if(qc) {
+              pc.fail = qc;
+              break;
+            }
+            q = q.fail
+          }
+          if(!q) {
+            pc.fail = root;
+          }
+        }
+        queue.push(pc);
+      }
+    }
+  }
 }
+
+let automata = new ACTree();
+let patterns = ['at', 'art', 'oars', 'soar'];
+for(let pattern of patterns) {
+  automata.insert(pattern);
+}
+
+automata.buildFailurePointer()
+console.log(automata);
