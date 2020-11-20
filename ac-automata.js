@@ -58,6 +58,32 @@ class ACTree {
       }
     }
   }
+
+  match(text) {
+    let root = this.root;
+    let n = text.length;
+    let p = root;
+
+    for(let i = 0; i < n; i++) {
+      let idx = text[i].codePointAt(0) + 1;
+      while(!p.children[idx] && p!= root) {
+        p = p.fail;
+      }
+
+      p = p.children[idx];
+      if(!p) {
+        p = root;
+      }
+
+      let tmp = p;
+      while(tmp != root) {
+        if(tmp.isEndingChar) {
+          console.log(`Start from ${i - p.length + 1}, length: ${p.length}`);
+        }
+        tmp = tmp.fail;
+      }
+    }
+  }
 }
 
 let automata = new ACTree();
@@ -66,5 +92,6 @@ for(let pattern of patterns) {
   automata.insert(pattern);
 }
 
-automata.buildFailurePointer()
+automata.buildFailurePointer();
+automata.match("soarsoars");
 console.log(automata);
